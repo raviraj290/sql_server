@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - name: print envs
-         run: echo "$NODE_VERSION;$MY_GLOBAL_VAR"
-    
+         env:
+          MESSAGE: "Hello from this step!"
+         run: |
+              echo "$NODE_VERSION;$MY_GLOBAL_VAR"
+              echo $MESSAGE
       
