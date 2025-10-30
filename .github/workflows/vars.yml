@@ -17,4 +17,6 @@ jobs:
               echo "$NODE_VERSION;$MY_GLOBAL_VAR"
               echo $MESSAGE
               echo "this project is -${{vars.project_id}}"
+              echo "${{github.repository}}" 
+              
       
