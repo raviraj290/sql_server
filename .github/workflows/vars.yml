@@ -1,0 +1,16 @@
+name: workflow with variables
+
+on:
+  workflow_dispatch
+env:
+  NODE_VERSION: '18'
+  MY_GLOBAL_VAR: 'This is a global variable'
+
+jobs:
+  greeting_jobs:
+    runs-on: ubuntu-latest
+    steps:
+       - name: print envs
+         run: echo "$NODE_VERSION;$MY_GLOBAL_VAR"
+    
+      
