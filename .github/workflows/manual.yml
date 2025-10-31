@@ -1,4 +1,4 @@
-=name: Manual Inputs Addition
+name: Manual Inputs Addition
 
 # Trigger the workflow manually from the GitHub UI
 on:
