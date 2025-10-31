@@ -1,39 +1,22 @@
-name: Manual Deployment
+name: manual inputs
 
 on:
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-        - info
-        - warning
-        - debug
-      target_environment:
-        description: 'Environment to deploy to'
-        required: true
-        type: environment
-      version_tag:
-        description: 'Version tag to deploy'
-        required: false
-        type: string
+
+  inputs:
+    number1:
+       description: this is number one 
+       default: 0
+       required: True 
+    number2:
+       description: this is number two 
+       default: 0
+       required: True
+
 jobs:
-  deployment-job:
-    runs-on: ubuntu-latest
+  addition:
+    run-on: ubantu-latest
     steps:
-      - name: Deploy to ${{ inputs.target_environment }}
-        run: |
-          echo "Deploying version ${{ inputs.version_tag }} to ${{ inputs.target_environment }}"
-          echo "Using log level: ${{ inputs.logLevel }}"
-
-      - name: Run a job based on conditional input
-        if: ${{ inputs.logLevel == 'debug' }}
-        run: echo "Debug mode is active. Running extra diagnostics..."
-Use code with caution.
-
-How to provide input to the workflow
-Using the GitHu
+       - name: adding
+         id: sum
+         run: echo "${{inputs.number1}};${{inputs.number2}} addition="
