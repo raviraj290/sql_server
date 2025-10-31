@@ -1,22 +1,42 @@
-name: manual inputs
+=name: Manual Inputs Addition
 
+# Trigger the workflow manually from the GitHub UI
 on:
   workflow_dispatch:
+    inputs:
+      number1:
+        description: 'This is the first number for addition'
+        required: true
+        default: 0
+        type: number
+      number2:
+        description: 'This is the second number for addition'
+        required: true
+        default: 0
+        type: number
 
-  inputs:
-    number1:
-       description: this is number one 
-       default: 0
-       required: True 
-    number2:
-       description: this is number two 
-       default: 0
-       required: True
-
+# A job that performs the addition
 jobs:
-  addition:
-    run-on: ubantu-latest
+  addition_job:
+    # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
+    
+    # Define the steps for this job
     steps:
-       - name: adding
-         id: sum
-         run: echo "${{inputs.number1}};${{inputs.number2}} addition="
+      - name: Perform Addition
+        id: sum
+        # The 'run' command executes a shell script.
+        # This script captures the inputs and performs the arithmetic.
+        run: |
+          # Assign workflow inputs to shell variables.
+          # The GitHub Actions runner evaluates ${{ inputs.<name> }}
+          # and substitutes the values before the script runs.
+          num1=${{ inputs.number1 }}
+          num2=${{ inputs.number2 }}
+          
+          # Perform the arithmetic using Bash's $((...)) syntax.
+          # No dollar signs are needed for variables inside the double parentheses.
+          sum=$((num1 + num2))
+          
+          # Print the result to the workflow log.
+          echo "The sum of $num1 and $num2 is $sum."
