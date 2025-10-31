@@ -39,3 +39,4 @@ jobs:
           
           # Print the result to the workflow log.
           echo "The sum of $num1 and $num2 is $sum."
+          echo "secret is ${{ secrets.user_name }} "
